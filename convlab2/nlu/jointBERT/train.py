@@ -1,5 +1,9 @@
 import argparse
 import os
+import sys
+# change to your own path
+sys.path.append("/Users/caojiaqi/Desktop/workspace/CrossWOZ")
+
 import json
 from torch.utils.tensorboard import SummaryWriter
 import random
@@ -96,6 +100,8 @@ if __name__ == '__main__':
     writer.add_text('config', json.dumps(config))
 
     for step in range(1, max_step + 1):
+        print("train start!")
+        print(step)
         model.train()
         batched_data = dataloader.get_train_batch(batch_size)
         batched_data = tuple(t.to(DEVICE) for t in batched_data)
